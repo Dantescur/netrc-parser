@@ -378,6 +378,10 @@ impl Netrc {
         }
     }
 
+    pub fn get_credentials(&self, machine: &str) -> Option<Credentials> {
+        self.get(machine).map(|m| Credentials { email: m.login.clone(), token: m.password.clone() })
+    }
+
     /// Retrieves a machine entry by its name.
     ///
     /// Returns `Some(&NetrcMachine)` if found, or `None` if no entry exists.
@@ -412,6 +416,7 @@ impl Netrc {
     ///
     /// Returns a pretty-printed TOML string or a `NetrcError` if serialization
     /// fails.
+    #[cfg(feature = "toml")]
     pub fn to_toml(&self) -> Result<String, NetrcError> {
         info!("Serializing .netrc to TOML");
         match toml::to_string_pretty(self) {
@@ -563,6 +568,44 @@ impl Netrc {
             },
         }
     }
+
+    pub fn set_credentials(
+        &mut self,
+        machine: &str,
+        login: &str,
+        password: &str,
+    ) -> Result<(), NetrcError> {
+        let machine_entry = NetrcMachine {
+            machine: machine.to_string(),
+            login: login.to_string(),
+            password: password.to_string(),
+            account: None,
+            macdef: None,
+        };
+        self.insert_machine(machine_entry);
+        Ok(())
+    }
+
+    pub fn remove_credentials(&mut self, machine: &str) -> Option<NetrcMachine> {
+        self.remove_machine(machine)
+    }
+
+    pub fn merge(&mut self, other: Netrc) {
+        for (name, machine) in other.machines {
+            self.machines.insert(name, machine);
+        }
+    }
+
+    // pub fn diff(
+    //     &self,
+    //     other: &Netrc,
+    // ) -> HashMap<String, (Option<&NetrcMachine>, Option<&NetrcMachine>)> {
+    //     let mut diff = HashMap::new();
+    //     for name in self.machines.keys().chain(other.machines.keys()) {
+    //         diff.insert(name.clone(), (self.machines.get(name),
+    // other.machines.get(name)));     }
+    //     diff
+    // }
 }
 
 #[cfg(test)]
