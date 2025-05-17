@@ -9,24 +9,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: rustup toolchain install stable
-      - run: cargo test
+      - name: Install Rust nightly
+        run: rustup toolchain install nightly-2025-03-08 --component rustfmt clippy
+      - name: Run tests
+        run: cargo +nightly-2025-03-08 test --all-targets --all-features
+        env:
+          RUST_LOG: debug
   format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: rustup toolchain install nightly --component rustfmt
-      - run: cargo +nightly fmt -- --check
+      - name: Install Rust nightly
+        run: rustup toolchain install nightly-2025-03-08 --component rustfmt
+      - name: Check formatting
+        run: cargo +nightly-2025-03-08 fmt -- --check
   clippy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: rustup toolchain install stable --component clippy
-      - run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: Install Rust nightly
+        run: rustup toolchain install nightly-2025-03-08 --component clippy
+      - name: Run clippy
+        run: cargo +nightly-2025-03-08 clippy --all-targets --all-features -- -D warnings
   doc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: rustup toolchain install stable
-      - run: cargo doc --no-deps -- -D warnings
-      - run: cargo test --doc
+      - name: Install Rust nightly
+        run: rustup toolchain install nightly-2025-03-08
+      - name: Generate documentation
+        run: cargo +nightly-2025-03-08 doc --no-deps -- -D warnings
+      - name: Run doc tests
+        run: cargo +nightly-2025-03-08 test --doc
