@@ -11,7 +11,6 @@ format_macro_matchers = true
 imports_indent = "Visual"
 match_block_trailing_comma = true
 reorder_impl_items = true
-trailing_comma = "Always"
 use_field_init_shorthand = true
 use_try_shorthand = true
 wrap_comments = true
