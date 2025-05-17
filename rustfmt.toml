@@ -1,0 +1,23 @@
+# Use the nightly version of rustfmt
+style_edition = "2024"
+
+# Nightly settings for improved formatting
+combine_control_expr = false
+empty_item_single_line = false
+force_multiline_blocks = true
+format_code_in_doc_comments = true
+format_macro_bodies = true
+format_macro_matchers = true
+imports_indent = "Visual"
+match_block_trailing_comma = true
+reorder_impl_items = true
+trailing_comma = "Always"
+use_field_init_shorthand = true
+use_try_shorthand = true
+wrap_comments = true
+
+# General settings for consistency
+max_width = 100
+newline_style = "Unix"
+tab_spaces = 4
+use_small_heuristics = "Max"
