@@ -51,6 +51,12 @@ pub struct NetrcMachine {
     pub macdef: Option<String>,
 }
 
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub struct Credentials {
+    pub email: String,
+    pub token: String,
+}
+
 /// Represents a complete `.netrc` file with multiple machine entries.
 ///
 /// Stores machine entries in a `HashMap` keyed by machine name for efficient
