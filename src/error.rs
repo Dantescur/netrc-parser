@@ -10,4 +10,13 @@ pub enum NetrcError {
 
     #[error("File permissions are too open (should be 0600 or stricter)")]
     InsecurePermissions,
+
+    #[error("Serialization error: {0}")]
+    Serialize(String),
+
+    #[error("Entry not found: {0}")]
+    NotFound(String),
+
+    #[error("Duplicate entry found: {0}")]
+    DuplicateEntry(String),
 }
