@@ -1,5 +1,7 @@
 # netrc-parser
 
+[![CI](https://github.com/Dantescur/netrc-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/Dantescur/netrc-parser/actions/workflows/ci.yml)
+
 A Rust library for parsing and manipulating `.netrc` files.
 
 `netrc-parser` provides a modern, idiomatic parser for `.netrc` files, supporting machine entries, login credentials, accounts, and macro definitions (`macdef`). It includes serialization to JSON and TOML, file I/O, and comprehensive error handling.
