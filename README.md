@@ -1,8 +1,8 @@
-# netrc-rs
+# netrc-parser
 
 A Rust library for parsing and manipulating `.netrc` files.
 
-`netrc-rs` provides a modern, idiomatic parser for `.netrc` files, supporting machine entries, login credentials, accounts, and macro definitions (`macdef`). It includes serialization to JSON and TOML, file I/O, and comprehensive error handling.
+`netrc-parser` provides a modern, idiomatic parser for `.netrc` files, supporting machine entries, login credentials, accounts, and macro definitions (`macdef`). It includes serialization to JSON and TOML, file I/O, and comprehensive error handling.
 
 ## Installation
 
@@ -10,7 +10,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-netrc-rs = "0.1.0"
+netrc-parser = "0.1.0"
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ netrc-rs = "0.1.0"
 Parse a `.netrc` file and retrieve credentials:
 
 ```rust
-use netrc_rs::{Netrc, NetrcError};
+use netrc_parser::{Netrc, NetrcError};
 
 fn main() -> Result<(), NetrcError> {
     let path = dirs::home_dir()
@@ -58,4 +58,4 @@ Licensed under the MIT. See [LICENSE](./LICENSE) for details.
 
 ## Contributing
 
-Contributions are welcome! Please open a issue or pull request on [Github](https://github.com/dantescur/netrc-rs)
+Contributions are welcome! Please open a issue or pull request on [Github](https://github.com/dantescur/netrc-parser)
